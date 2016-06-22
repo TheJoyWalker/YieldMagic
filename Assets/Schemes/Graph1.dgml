@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Component" Bounds="271.521666666667,55.96,117.783333333333,25.96" Label="ComponentConfig" />
+    <Node Id="Config" Bounds="168.923333333333,0,54.98,25.96" />
+    <Node Id="Config1" Bounds="-574.424384155273,-228.55999420166,54.98,25.96" Label="Config" UseManualLocation="True" />
+    <Node Id="Config[]" Bounds="-489.444384155273,-192.339992980957,62.22,25.96" UseManualLocation="True" />
+    <Node Id="ObjectConfig" Bounds="151.476666666667,55.96,89.8733333333333,25.96" />
+    <Node Id="SubConfig" Bounds="158.815,111.92,75.1966666666667,25.96" />
+    <Node Id="TransformConfig" Bounds="0,55.96,120.826666666667,25.96" Label="GameObjectConfig" />
+  </Nodes>
+  <Links>
+    <Link Source="Component" Target="SubConfig" Bounds="235.799728393555,81.9199981689453,63.5321197509766,26.5317764282227" />
+    <Link Source="Config" Target="Component" Bounds="223.575668334961,24.323314666748,67.4512786865234,28.16845703125" />
+    <Link Source="Config" Target="ObjectConfig" Bounds="196.413330078125,25.9599990844727,0,21" />
+    <Link Source="Config" Target="TransformConfig" Bounds="100.281684875488,24.1839237213135,68.9026718139648,28.3514194488525" />
+    <Link Source="Config1" Target="Config[]" Bounds="-519.678664512586,-204.437757195686,22.9764858575604,9.39287072018402" />
+    <Link Source="ObjectConfig" Target="SubConfig" Bounds="196.413330078125,81.9199981689453,0,21" />
+    <Link Source="TransformConfig" Target="SubConfig" Bounds="91.9587249755859,81.9199981689453,64.5862579345703,26.5753479003906" />
+  </Links>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+</DirectedGraph>

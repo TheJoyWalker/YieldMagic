@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <case1>
+    <Path>/[GO]Transform</Path>
+    <Path>/[GO]/Transform/Transform/Field</Path>
+  </case1>
+  <case2>
+    <Path>Player/[Com]Material/Color</Path>
+    <Path>Ememy/[Com]Material/Color</Path>
+  </case2>
+  <case3>
+    <Path>/[r]Player/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject/[c]Material/[g]GameObject/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject/[c]Material/[g]GameObject/[c]Material/[g]GameObject/[c]Material/[g]GameObject</Path>
+    <Path>/[r]Player/[c]Material/[g]GameObject/[c]Material/[g]GameObject/[c]Material/[g]GameObject/[c]Material/[g]GameObject/[c]Material/[g]GameObject</Path>
+    
+    <Shoulder>
+      <Arm>
+        <Fist></Fist>
+      </Arm>
+    </Shoulder>
+  </case3>
+
+  <Obj>
+    <Path>.Cell.Transform</Path>
+    <Prop>
+      <Name>SetColor</Name>
+      <OffsetMode></OffsetMode>
+      <From></From>
+      <To></To>
+    </Prop>
+  </Obj>
+  <Obj>
+    <Path>/@Material</Path>
+    <Prop>
+      <Name>SetColor</Name>
+      <OffsetMode></OffsetMode>
+      <From></From>
+      <To></To>
+    </Prop>
+  </Obj>
+  <Obj>
+    <Path>/Shoulder/[Com]Transform</Path>
+    <Prop>
+      <Name>Position</Name>
+      <OffsetMode></OffsetMode>
+      <From></From>
+      <To></To>
+    </Prop>
+  </Obj>
+  <Obj>
+    <Path>/Arm/[Com]Transform</Path>
+    <Prop>
+      <Name>Position</Name>
+      <OffsetMode></OffsetMode>
+      <From></From>
+      <To></To>
+    </Prop>
+  </Obj>
+
+  <Obj name= "Shoulder">
+    <!--params-->
+    <Obj name ="arm">
+      <Obj name="hand">
+      </Obj>
+    </Obj>
+  </Obj>
+</Root>
