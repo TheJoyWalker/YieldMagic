@@ -1,0 +1,15 @@
+*.app
+.DS_Store
+Library/
+Temp/
+obj/
+/ProjectSettings/ProjectVersion.txt
+**/*.bin
+**/*.log
+**/*.userprefs
+**/*.sln
+**/*.csproj
+compilation log.txt
+.vscode/launch.json
+.vs
+.vscode
