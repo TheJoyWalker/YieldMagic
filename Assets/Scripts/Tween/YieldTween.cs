@@ -4,26 +4,19 @@ using YieldMagic;
 public sealed class YieldTween : YieldBase
 {
     private IPropertyUpdater[] _updaters;
+    private YieldTweenData _data;
 
-    private SerializedConfig _config;
-
-    public SerializedConfig Config
+    public YieldTweenData Data
     {
-        get { return _config; }
+        get { return _data; }
         set
         {
-            _config = value;
-            Duration = _config.Duration;
-
-            var cProps = _config.GetProperties();
-            _props = new BaseYieldTweenProperty[cProps.Length];
-            for (int i = 0; i < cProps.Length; i++)
-            {
-                _props[i] = (BaseYieldTweenProperty)cProps[i].GetTweenProperty();
-            }
+            _data = value;
+            Duration = value.Duration;
+            _updaters = value.GetUpdaters(_target);
         }
     }
-
+    
     private BaseYieldTweenProperty[] _props = new BaseYieldTweenProperty[0];
     private readonly object _target;
 
@@ -44,8 +37,8 @@ public sealed class YieldTween : YieldBase
 
     protected override void Update()
     {
-//        foreach (var prop in _props)
-//            prop.Update((prop.EasingFunction == null) ? EasedValue : prop.EasingFunction(Progress));
+        //        foreach (var prop in _props)
+        //            prop.Update((prop.EasingFunction == null) ? EasedValue : prop.EasingFunction(Progress));
         //prop.Apply(T _target, float value)=>propSetter(Target, Ease(start,end));
         for (int i = 0; i < _updaters.Length; i++)
             _updaters[i].Update(Progress);
@@ -53,6 +46,5 @@ public sealed class YieldTween : YieldBase
 
     protected override void OnRewind()
     {
-        //        throw new System.NotImplementedException();
     }
 }

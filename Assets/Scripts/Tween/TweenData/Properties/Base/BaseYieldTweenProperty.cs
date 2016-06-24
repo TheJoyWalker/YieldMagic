@@ -212,7 +212,7 @@ public abstract class BaseYieldTweenProperty
         }
     }
 
-    public abstract IPropertyUpdater GetUpdater(object targetObject);
+    public abstract IPropertyUpdater GetUpdater(object rootTargetObject);
 
     protected IEasingContainer GetEasingContainer()
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using YieldMagic;
 
 public class YieldTweenData
@@ -9,7 +10,10 @@ public class YieldTweenData
 
     public float Duration;
     private readonly List<BaseYieldTweenProperty> _properties = new List<BaseYieldTweenProperty>();
-
+    public IPropertyUpdater[] GetUpdaters(object o)
+    {
+        return _properties.Select(x => x.GetUpdater(o)).ToArray();
+    }
     public Extensions.AsTransform AsTransform;
     public Extensions.AsRenderer AsRenderer;
     public Extensions.AsGameObject AsGameObject;

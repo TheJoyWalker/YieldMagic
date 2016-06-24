@@ -6,8 +6,9 @@ using System.Reflection;
 public class ReflectedProperty<T> : CustomAccessorProperty<T> where T : struct
 {
 
-    public override IPropertyUpdater GetUpdater(object targetObject)
+    public override IPropertyUpdater GetUpdater(object rootTargetObject)
     {
+        var targetObject = ResolveToObject(rootTargetObject);
         if (string.IsNullOrEmpty(AccessName))
             throw new Exception("No Method name specified.");
 

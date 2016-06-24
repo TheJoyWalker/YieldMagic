@@ -164,11 +164,20 @@ public class UnityPathResolver
     {
         return UnityPathResolver.Resolve(o, new UnityPathResolver(path).PathParts);
     }
+    public static object ResolveToObject(object o, KeyValuePair<UnityPathResolver.PathPartType, string>[] pathParts)
+    {
+        return ResolvePart(o, pathParts, 1);
+    }
     public static object Resolve(object o, KeyValuePair<UnityPathResolver.PathPartType, string>[] pathParts)
     {
+        return ResolvePart(o, pathParts);
+    }
+    public static object ResolvePart(object o, KeyValuePair<UnityPathResolver.PathPartType, string>[] pathParts, int cutParts = 0)
+    {
         var cObj = o;
-        foreach (var part in pathParts)
+        for (int i = 0; i < pathParts.Length - cutParts; i++)
         {
+            KeyValuePair<PathPartType, string> part = pathParts[i];
             switch (part.Key)
             {
                 case PathPartType.Find:
