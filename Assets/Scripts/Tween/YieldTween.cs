@@ -20,7 +20,6 @@ public sealed class YieldTween : YieldBase
             for (int i = 0; i < cProps.Length; i++)
             {
                 _props[i] = (BaseYieldTweenProperty)cProps[i].GetTweenProperty();
-                _props[i].Initialize(_target);
             }
         }
     }
@@ -36,7 +35,6 @@ public sealed class YieldTween : YieldBase
 
     public YieldTween AddProperty(BaseYieldTweenProperty prop)
     {
-        prop.Initialize(_target);
         BaseYieldTweenProperty[] newProps = new BaseYieldTweenProperty[_props.Length + 1];
         newProps[0] = prop;
         _props.CopyTo(newProps, 1);
@@ -46,8 +44,8 @@ public sealed class YieldTween : YieldBase
 
     protected override void Update()
     {
-        foreach (var prop in _props)
-            prop.Update((prop.EasingFunction == null) ? EasedValue : prop.EasingFunction(Progress));
+//        foreach (var prop in _props)
+//            prop.Update((prop.EasingFunction == null) ? EasedValue : prop.EasingFunction(Progress));
         //prop.Apply(T _target, float value)=>propSetter(Target, Ease(start,end));
         for (int i = 0; i < _updaters.Length; i++)
             _updaters[i].Update(Progress);

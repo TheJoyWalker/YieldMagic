@@ -154,11 +154,20 @@ public class UnityPathResolver
     {
         while (char.IsWhiteSpace(this._cChar) && NextChar()) ;
     }
+
+    public static KeyValuePair<UnityPathResolver.PathPartType, string>[] GetPathParts(string path)
+    {
+        return new UnityPathResolver(path).PathParts;
+    }
+
     public static object Resolve(object o, string path)
     {
-        var resolver = new UnityPathResolver(path);
+        return UnityPathResolver.Resolve(o, new UnityPathResolver(path).PathParts);
+    }
+    public static object Resolve(object o, KeyValuePair<UnityPathResolver.PathPartType, string>[] pathParts)
+    {
         var cObj = o;
-        foreach (var part in resolver.PathParts)
+        foreach (var part in pathParts)
         {
             switch (part.Key)
             {

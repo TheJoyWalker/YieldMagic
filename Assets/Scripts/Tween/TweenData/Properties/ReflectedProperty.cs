@@ -6,19 +6,17 @@ using System.Reflection;
 public class ReflectedProperty<T> : CustomAccessorProperty<T> where T : struct
 {
 
-    //I really hope serialization can handle this, otherwise all's srewed xD
-    public override void Initialize(object target)
+    public override IPropertyUpdater GetUpdater(object targetObject)
     {
         if (string.IsNullOrEmpty(AccessName))
             throw new Exception("No Method name specified.");
-    }
 
-    public override void UpdateAccessors(object target)
-    {
-        var type = target.GetType();
+        var type = targetObject.GetType();
+        Func<T> getter = null;
+        Action<T> setter;
 
         var bindingFlags = BindingFlags.Instance | BindingFlags.Public;
-        MethodInfo[] methods = target.GetType().GetMethods(bindingFlags);
+        MethodInfo[] methods = type.GetMethods(bindingFlags);
         PropertyInfo[] props = type.GetProperties(bindingFlags);
         FieldInfo[] fields = type.GetFields(bindingFlags);
 
@@ -33,11 +31,11 @@ public class ReflectedProperty<T> : CustomAccessorProperty<T> where T : struct
         //Still don't like it since we will have boxing here
         if (field != null)
         {
-            Setter = value => field.SetValue(target, value);
-            Getter = () => (T)field.GetValue(target);
+            setter = value => field.SetValue(targetObject, value);
+            getter = () => (T)field.GetValue(targetObject);
         }
 
-        Setter = Utility.CreateAction<T>(method != null ? method : prop.GetSetMethod(), target);
+        setter = Utility.CreateAction<T>(method != null ? method : prop.GetSetMethod(), targetObject);
 
         switch (OffsetMode)
         {
@@ -46,12 +44,20 @@ public class ReflectedProperty<T> : CustomAccessorProperty<T> where T : struct
             case PropertyOffsetMode.MulOffset:
                 if (prop.GetGetMethod() == null)
                     throw new Exception(string.Format("Offset mode needs Getter or Field {0}", AccessName));
-                Getter = Utility.CreateGetter<T>(prop, target);
-                FromVaue = Getter();
+                getter = Utility.CreateGetter<T>(prop, targetObject);
+                FromVaue = getter();
                 break;
             case PropertyOffsetMode.FromTo:
             default:
                 break;
         }
+        return new PropertyUpdater<T>()
+        {
+            Getter = getter,
+            Setter = setter,
+            From = FromVaue,
+            To = ToValue,
+            Lerp = Lerp
+        };
     }
 }
