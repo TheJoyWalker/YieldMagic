@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace YieldMagic
 {
-    public class Pool
+    public class YieldPool
     {
         private static readonly Dictionary<Type, List<YieldBase>> freeInstruction =
         new Dictionary<Type, List<YieldBase>>();

@@ -120,7 +120,7 @@ namespace YieldMagic
 
 
                 if (WillQuit && ReturnToPool)
-                    Pool.Free(this);
+                    YieldPool.Free(this);
                 //TimeProgress += Time.deltaTime;
                 return !WillQuit;
             }
@@ -198,7 +198,7 @@ namespace YieldMagic
         public static T Get<T>() where T : YieldBase, new()
         {
             if (YieldBase.UsePool)
-                return Pool.Get<T>();
+                return YieldPool.Get<T>();
             return new T();
         }
 
